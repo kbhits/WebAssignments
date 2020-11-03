@@ -1,0 +1,12 @@
+.login {
+    position: absolute;
+    height: 325px;
+    width: 100%;
+    top: 10px;
+    left: 200px;
+    right: 200px;
+}
+
+h1 {
+    color: green;
+}

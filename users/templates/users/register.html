@@ -1,0 +1,18 @@
+{% extends "blogs/base.html" %}
+
+{% block content %}
+<div class="login">
+    <h1>欢迎注册使用！</h1>
+</div>
+<div class="register">
+    <form method='post' action="{% url 'users:register' %}">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button name="sumbit" class="button" style="vertical-align:middle"><span>注册</span></button>
+        <input type="hidden" name="next" value="{% url 'blogs:index' %}" />
+        <button type="button" class="button" style="vertical-align:middle" onclick="goBack()"><span>返回</span></button>
+
+    </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends "blogs/base.html" %}
+
+{% block content %}
+
+  <div class="conter"><h1>欢迎留言！</h1>
+    <ul>
+      {% for topic in topics %}
+        <li>
+            <a href = "{% url 'blogs:topic' topic.id %}">{{ topic }}</a>
+        </li>
+      {% empty %}
+      <li>No topics have been add yet.</li>
+      {% endfor %}
+    </ul>
+    <a href="{% url 'blogs:new_topic' %}">我也要留言！</a>
+  </div>
+    
+
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends "blogs/base.html" %}
+
+{% block content %}
+<div class="topichead">
+  <p>留言: {{ topic }}</p>
+  <p>回复:</p>
+  <p>
+    <a href="{% url 'blogs:new_entry' topic.id %}">我也要回复！</a>
+  </p>
+</div>
+  <div class="topic">
+    {% for entry in entries %}
+      <h1>{{ entry.date_added|date:'M d, Y H:i' }}</h1>
+      <p>{{ entry.text|linebreaks }}</p>
+      <p>
+          <a href="{% url 'blogs:edit_entry' entry.id %}">编辑</a>
+      </p>
+      {% empty %}
+      There are no entries for this topic yet
+      {% endfor %}
+  </div>
+{% endblock content %}

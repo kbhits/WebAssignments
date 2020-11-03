@@ -1,0 +1,61 @@
+<!doctype html>
+
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="KBHIT">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Kyle's Blog</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <script src="/static/js/index.js"></script>
+
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+	<script type="text/javascript">
+		var width=window.innerWidth;
+		var height=window.innerHeight * 1.5;
+		var canvas=document.querySelector("#canvas");
+		var context=canvas.getContext("2d");
+		var snowArray=[];
+ 
+		canvas.width=width;
+		canvas.height=height;
+ 
+		cartoon();
+        for(var i=0;i<1000;i++)
+        {
+			var snow=new Snowflake();
+			snowArray.push(snow);
+        }
+	</script>
+    <div class="header">
+        <h1>Kyle's Blog</h1>
+    </div>
+
+    <div class="topnav">
+        <a href="{% url 'blogs:index' %}">主页</a>
+        <a href="{% url 'blogs:topics' %}">留言板</a>
+        {% if user.is_authenticated %}
+        <a href="#">你好, {{ user.username }}.</a>
+        <a href="{% url 'users:logout' %}">登出</a>
+        {% else %}
+        <a href="{% url 'users:login' %}">登录</a>
+        <a href="{% url 'users:register' %}">注册</a>
+        {% endif %}
+    </div>
+
+    <div class="content">
+        <div class="center">
+            {% block content %}{% endblock content %}
+        </div>
+    </div>
+
+</body>
+</html>
